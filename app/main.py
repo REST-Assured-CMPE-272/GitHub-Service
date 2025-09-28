@@ -70,3 +70,36 @@ async def list_issues(state: str = "open", labels: Optional[str] = None, page: i
 async def get_issue(number: int):
     raw = await github.get_issue(number)
     return _issue_shape(raw)
+
+# Author : Akshay Navani
+@app.patch("/issues/{number}")
+async def update_issue(number: int, payload: UpdateIssueRequest):
+    if payload.state and payload.state not in ("open","closed"):
+        raise HTTPException(status_code=400, detail="invalid state; must be open or closed")
+    data = payload.dict(exclude_none=True)
+    raw = await github.update_issue(number, data)
+    return _issue_shape(raw)
+
+@app.post("/webhook", status_code=204)
+async def webhook(request: Request):
+    body = await request.body()
+    sig = request.headers.get("x-hub-signature-256")
+    event = request.headers.get("x-github-event")
+    delivery_id = request.headers.get("x-github-delivery", str(uuid.uuid4()))
+    if not event: raise HTTPException(status_code=400, detail="missing X-GitHub-Event")
+    verify_signature(config.WEBHOOK_SECRET or "", body, sig)
+    payload = json.loads(body.decode("utf-8"))
+    action = payload.get("action", "")
+    issue_number = payload.get("issue", {}).get("number") if isinstance(payload.get("issue"), dict) else None
+    if event not in ("issues","issue_comment","ping"):
+        raise HTTPException(status_code=400, detail=f"unsupported event: {event}")
+    store_event(delivery_id, event, action, issue_number)
+    return Response(status_code=204)
+
+@app.get("/events")
+async def events(limit: int = 25):
+    return read_events(limit=limit)
+
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
