@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: GitHub Issues Gateway
+  version: 1.0.0
+servers:
+  - url: http://localhost:{{PORT}}
+paths:
+  /healthz:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+  /issues:
+    post:
+      summary: Create an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIssueRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location: { description: Resource location, schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Issue' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    get:
+      summary: List issues
+      parameters:
+        - in: query
+          name: state
+          schema: { type: string, enum: [open, closed, all], default: open }
+        - in: query
+          name: labels
+          schema: { type: string }
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: per_page
+          schema: { type: integer, minimum: 1, maximum: 100, default: 30 }
+      responses:
+        '200':
+          description: OK
+          headers:
+            Link: { description: RFC 5988 pagination header, schema: { type: string } }
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/IssueListItem' }
+  /issues/{number}:
+    get:
+      summary: Get a single issue
+      parameters:
+        - in: path
+          name: number
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Issue' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      summary: Update an issue
+      parameters:
+        - in: path
+          name: number
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UpdateIssueRequest' }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Issue' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /issues/{number}/comments:
+    post:
+      summary: Create a comment on an issue
+      parameters:
+        - in: path
+          name: number
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateCommentRequest' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Comment' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /webhook:
+    post:
+      summary: GitHub webhook receiver (issues, issue_comment, ping)
+      requestBody: { required: true, content: { application/json: { schema: { type: object } } } }
+      responses:
+        '204': { description: No Content }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /events:
+    get:
+      summary: (Debug) Return recent processed webhook events
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer, default: 25 }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/StoredEvent' }
+components:
+  securitySchemes:
+    githubToken: { type: http, scheme: bearer, bearerFormat: token }
+  responses:
+    BadRequest: { description: Bad Request, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    Unauthorized: { description: Unauthorized, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    NotFound: { description: Not Found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+  schemas:
+    Error: { type: object, properties: { error: { type: string }, details: { type: object, additionalProperties: true } } }
+    CreateIssueRequest: { type: object, required: [title], properties: { title: { type: string }, body: { type: string }, labels: { type: array, items: { type: string } } } }
+    UpdateIssueRequest: { type: object, properties: { title: { type: string }, body: { type: string }, state: { type: string, enum: [open, closed] } } }
+    IssueListItem:
+      type: object
+      properties:
+        number: { type: integer, example: 42 }
+        title: { type: string }
+        state: { type: string, enum: [open, closed] }
+        labels: { type: array, items: { type: string } }
+        html_url: { type: string, format: uri }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    Issue:
+      allOf:
+        - $ref: '#/components/schemas/IssueListItem'
+        - type: object
+          properties: { body: { type: string } }
+    CreateCommentRequest: { type: object, required: [body], properties: { body: { type: string } } }
+    Comment: { type: object, properties: { id: { type: integer }, body: { type: string }, user: { type: object, properties: { login: { type: string } } }, created_at: { type: string, format: date-time }, html_url: { type: string, format: uri } } }
+    StoredEvent: { type: object, properties: { id: { type: string }, event: { type: string }, action: { type: string }, issue_number: { type: integer, nullable: true }, timestamp: { type: string, format: date-time } } }
+security: [ { githubToken: [] } ]
