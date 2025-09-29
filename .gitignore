@@ -12,3 +12,4 @@ htmlcov/
 *.log
 events.jsonl
 events_index.json
+!GitHub Issues Gateway.postman_collection.json
