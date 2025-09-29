@@ -1,0 +1,1156 @@
+{
+	"info": {
+		"_postman_id": "65fbd9b7-9082-4242-b9c0-19355fe358f2",
+		"name": "GitHub Issues Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10418165"
+	},
+	"item": [
+		{
+			"name": "issues",
+			"item": [
+				{
+					"name": "{number}",
+					"item": [
+						{
+							"name": "Get a single issue",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/issues/:number",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues",
+										":number"
+									],
+									"variable": [
+										{
+											"key": "number",
+											"value": "837",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"number\": 42,\n  \"title\": \"string\",\n  \"state\": \"closed\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"html_url\": \"http://HdKNtOBcfnXSoHLgdjZ.cvuPwLM-J\",\n  \"created_at\": \"1966-07-13T08:17:44.514Z\",\n  \"updated_at\": \"2016-03-04T02:30:22.219Z\",\n  \"body\": \"string\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update an issue",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"state\": \"closed\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/issues/:number",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues",
+										":number"
+									],
+									"variable": [
+										{
+											"key": "number",
+											"value": "837",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"state\": \"closed\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"number\": 42,\n  \"title\": \"string\",\n  \"state\": \"closed\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"html_url\": \"http://HdKNtOBcfnXSoHLgdjZ.cvuPwLM-J\",\n  \"created_at\": \"1966-07-13T08:17:44.514Z\",\n  \"updated_at\": \"2016-03-04T02:30:22.219Z\",\n  \"body\": \"string\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"state\": \"closed\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"state\": \"closed\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create a comment on an issue",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"body\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/issues/:number/comments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues",
+										":number",
+										"comments"
+									],
+									"variable": [
+										{
+											"key": "number",
+											"value": "837",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"body\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number/comments",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 7005,\n  \"body\": \"string\",\n  \"user\": {\n    \"login\": \"string\"\n  },\n  \"created_at\": \"1954-01-03T17:35:49.853Z\",\n  \"html_url\": \"http://tRDfEVUoZitpRvsXlRjiQsIYRtvXEWZk.xbokMB.cEnus.8ZA\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"body\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number/comments",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"body\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/issues/:number/comments",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"issues",
+												":number",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "number",
+													"value": "837",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create an issue",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/issues",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"issues"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/issues",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Location",
+									"value": "string",
+									"description": "Resource location"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"number\": 42,\n  \"title\": \"string\",\n  \"state\": \"closed\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"html_url\": \"http://HdKNtOBcfnXSoHLgdjZ.cvuPwLM-J\",\n  \"created_at\": \"1966-07-13T08:17:44.514Z\",\n  \"updated_at\": \"2016-03-04T02:30:22.219Z\",\n  \"body\": \"string\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/issues",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/issues",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "List issues",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/issues?state=open&labels=string&page=1&per_page=30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"issues"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "open"
+								},
+								{
+									"key": "labels",
+									"value": "string"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/issues?state=open&labels=string&page=1&per_page=30",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"issues"
+									],
+									"query": [
+										{
+											"key": "state",
+											"value": "open"
+										},
+										{
+											"key": "labels",
+											"value": "string"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Link",
+									"value": "string",
+									"description": "RFC 5988 pagination header"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"number\": 42,\n    \"title\": \"string\",\n    \"state\": \"closed\",\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"html_url\": \"http://ypQitCgYQDzitkFUUJetyLDXdnInTB.sbo5OBcyi5\",\n    \"created_at\": \"1957-06-16T17:54:54.991Z\",\n    \"updated_at\": \"2025-07-11T09:11:43.240Z\"\n  },\n  {\n    \"number\": 42,\n    \"title\": \"string\",\n    \"state\": \"open\",\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"html_url\": \"https://CfNAXdVFPYMQjjLfSctICK.epgI,qIpbw.UUO1QURUVmm99HCS4LTsd\",\n    \"created_at\": \"1983-11-23T08:36:48.838Z\",\n    \"updated_at\": \"1983-06-03T23:20:15.681Z\"\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/healthz",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"healthz"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/healthz",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"healthz"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"ok\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GitHub webhook receiver (issues, issue_comment, ping)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/webhook",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"webhook"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "No Content",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/webhook",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"webhook"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Bad Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/webhook",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"webhook"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/webhook",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"webhook"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": 2691,\n    \"key_1\": 4449.060674865439,\n    \"key_2\": 4801.099360958867\n  }\n}"
+				}
+			]
+		},
+		{
+			"name": "(Debug) Return recent processed webhook events",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/events?limit=25",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"events"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "25"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events?limit=25",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n  {\n    \"id\": \"string\",\n    \"event\": \"string\",\n    \"action\": \"string\",\n    \"issue_number\": 8152,\n    \"timestamp\": \"2005-03-13T23:07:55.909Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"event\": \"string\",\n    \"action\": \"string\",\n    \"issue_number\": 3690,\n    \"timestamp\": \"1960-10-10T04:30:50.704Z\"\n  }\n]"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:{{PORT}}",
+			"type": "string"
+		}
+	]
+}
